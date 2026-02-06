@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🌹 Rose Day Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(120deg, #ff4d6d, #ffb3c6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      animation: zoom 1s;
+    }
+    button {
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    @keyframes zoom {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2 id="text">Hey 😊</h2>
+  <button onclick="next()">Next 💖</button>
+</div>
+
+<script>
+let msgs = [
+  "Good Morning ❤️",
+  "Today is Rose Day 🌹",
+  "Ye rose sirf tumhare liye 💐",
+  "Will you always stay with me? 💍"
+];
+let i = 0;
+function next() {
+  document.getElementById("text").innerText = msgs[i];
+  i++;
+}
+</script>
+
+</body>
+</html>
