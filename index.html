@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>🌹 Rose Day Surprise</title>
+  <title>🌹 For You</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(120deg, #ff4d6d, #ffb3c6);
+      background: linear-gradient(135deg,#ff758c,#ff7eb3);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -14,43 +14,85 @@
     }
     .box {
       background: white;
-      padding: 30px;
+      padding: 25px;
       border-radius: 20px;
       text-align: center;
-      animation: zoom 1s;
+      width: 90%;
+      max-width: 330px;
+      animation: pop 1s ease;
     }
     button {
       background: #ff4d6d;
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 16px;
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-size: 14px;
+      margin: 6px;
     }
-    @keyframes zoom {
-      from { transform: scale(0); }
-      to { transform: scale(1); }
+    .rose {
+      font-size: 50px;
+      animation: float 2s infinite alternate;
+    }
+    @keyframes pop {
+      from {transform: scale(0.5); opacity:0;}
+      to {transform: scale(1); opacity:1;}
+    }
+    @keyframes float {
+      from {transform: translateY(0);}
+      to {transform: translateY(-15px);}
     }
   </style>
 </head>
 <body>
 
 <div class="box">
-  <h2 id="text">Hey 😊</h2>
-  <button onclick="next()">Next 💖</button>
+  <div id="content">
+    <div class="rose">🌹</div>
+    <h3>Hey ❤️</h3>
+    <p>Ready for a small surprise?</p>
+    <button onclick="next()">Yes 😊</button>
+  </div>
 </div>
 
 <script>
-let msgs = [
-  "Good Morning ❤️",
-  "Today is Rose Day 🌹",
-  "Ye rose sirf tumhare liye 💐",
-  "Will you always stay with me? 💍"
-];
-let i = 0;
-function next() {
-  document.getElementById("text").innerText = msgs[i];
-  i++;
+let step = 0;
+function next(answer){
+  const c = document.getElementById("content");
+
+  if(step === 0){
+    c.innerHTML = `
+      <h3>Question 1 💕</h3>
+      <p>Do you like surprises?</p>
+      <button onclick="next('yes')">Yes 😍</button>
+      <button onclick="next('no')">A little 🙈</button>`;
+  }
+
+  else if(step === 1){
+    c.innerHTML = `
+      <h3>Question 2 🌹</h3>
+      <p>Which rose do you like?</p>
+      <button onclick="next()">Red ❤️</button>
+      <button onclick="next()">Pink 💖</button>`;
+  }
+
+  else if(step === 2){
+    c.innerHTML = `
+      <h3>Question 3 🥰</h3>
+      <p>Who makes you smile the most?</p>
+      <button onclick="next()">You 😌</button>
+      <button onclick="next()">Me 😉</button>`;
+  }
+
+  else if(step === 3){
+    c.innerHTML = `
+      <div class="rose">🌹🌹🌹</div>
+      <h2>Happy Rose Day 💐</h2>
+      <p>This rose is only for you ❤️</p>
+      <p>Will you stay with me always? 💍</p>
+    `;
+  }
+  step++;
 }
 </script>
 
