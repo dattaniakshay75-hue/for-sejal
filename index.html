@@ -74,7 +74,7 @@ button{
   <div class="rose">🌹</div>
   <h3>Hey baccha ❤️</h3>
   <p>Ready for a small surprise?</p>
-  <button onclick="yes()">Yes 😊</button>
+  <button onclick="q1()">Yes 😊</button>
 </div>
 
 <div id="hiddenMsg">You are my world 🌎💖</div>
@@ -82,8 +82,48 @@ button{
 <script>
 const animationLayer = document.getElementById("animationLayer");
 
-/* YES surprise */
-function yes(){
+/* Sad messages loop */
+let sadIndex = 0;
+const sadLines = [
+  "Are you sure? 😢",
+  "Please soch lo 💔",
+  "Dil dukhta hai 🥺",
+  "Last chance ❤️"
+];
+
+/* Questions flow */
+function q1(){
+  content.innerHTML=`
+    <p>Do you like surprises? 💕</p>
+    <button onclick="q2()">Yes 😍</button>
+    <button onclick="q2()">Obviously 🙈</button>`;
+}
+
+function q2(){
+  content.innerHTML=`
+    <p>Am I special to you? 🌹</p>
+    <button onclick="q3()">Very much ❤️</button>
+    <button onclick="q3()">Of course 😘</button>`;
+}
+
+function q3(){
+  content.innerHTML=`
+    <p>Will you be mine forever? 💍</p>
+    <button onclick="finalYes()">YES 💖</button>
+    <button onclick="finalNo()">NO 😶</button>`;
+}
+
+/* NO in final question → sad loop */
+function finalNo(){
+  content.innerHTML=`
+    <p>${sadLines[sadIndex]}</p>
+    <button onclick="finalYes()">YES 💖</button>
+    <button onclick="finalNo()">NO 😭</button>`;
+  if(sadIndex < sadLines.length -1) sadIndex++;
+}
+
+/* YES → FINAL SURPRISE */
+function finalYes(){
   const c = document.getElementById("content");
   c.innerHTML=`
     <h2 id="loveText">Love You baccha ❤️</h2>
@@ -151,4 +191,4 @@ document.body.addEventListener("click", ()=>{
 </script>
 
 </body>
-</html>
+  </html>
