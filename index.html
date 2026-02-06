@@ -16,7 +16,7 @@ body{
   background: linear-gradient(135deg,#ff758c,#ff7eb3);
   transition: background 2s;
 }
-#animationLayer, #textLayer{
+#animationLayer{
   position:absolute;
   top:0;left:0;width:100%;height:100%;
   pointer-events:none;
@@ -64,73 +64,23 @@ button{
   z-index:999;
   box-shadow:0 0 10px #ff4d6d;
 }
-#countdownOverlay{
-  display:none;
-  position:fixed;
-  top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.5);
-  color:white;
-  font-size:60px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-  flex-direction:column;
-}
 </style>
 </head>
 <body>
 
 <div id="animationLayer"></div>
-<div id="textLayer"></div>
 
 <div class="box" id="content">
   <div class="rose">🌹</div>
   <h3>Hey baccha ❤️</h3>
   <p>Ready for a small surprise?</p>
-  <button onclick="q1()">Yes 😊</button>
+  <button onclick="yes()">Yes 😊</button>
 </div>
 
 <div id="hiddenMsg">You are my world 🌎💖</div>
-<div id="countdownOverlay">3</div>
 
 <script>
-let sad = 0;
-const sadLines=[
-  "Are you sure? 😢",
-  "Please soch lo 💔",
-  "Dil dukhta hai 🥺",
-  "Last chance ❤️"
-];
 const animationLayer = document.getElementById("animationLayer");
-const textLayer = document.getElementById("textLayer");
-
-/* Questions */
-function q1(){
-  content.innerHTML=`
-    <p>Do you like surprises? 💕</p>
-    <button onclick="q2()">Yes 😍</button>
-    <button onclick="q2()">Obviously 🙈</button>`;
-}
-function q2(){
-  content.innerHTML=`
-    <p>Am I special to you? 🌹</p>
-    <button onclick="proposal()">Very much ❤️</button>
-    <button onclick="proposal()">Of course 😘</button>`;
-}
-function proposal(){
-  content.innerHTML=`
-    <p>Will you be mine forever? 💍</p>
-    <button onclick="yes()">YES 💖</button>
-    <button onclick="no()">NO 😶</button>`;
-}
-function no(){
-  content.innerHTML=`
-    <p>${sadLines[sad]}</p>
-    <button onclick="yes()">YES 💖</button>
-    <button onclick="no()">NO 😭</button>`;
-  if(sad < sadLines.length-1) sad++;
-}
 
 /* YES surprise */
 function yes(){
@@ -144,7 +94,6 @@ function yes(){
   startConfetti();
   startTypewriter();
   startBgGradient();
-  startCountdownOverlay();
 }
 
 /* Floating hearts */
@@ -191,21 +140,6 @@ function startBgGradient(){
     deg +=1;
     document.body.style.background=`linear-gradient(${deg}deg,#ff758c,#ff7eb3)`;
   },100);
-}
-
-/* Countdown overlay */
-function startCountdownOverlay(){
-  const overlay = document.getElementById("countdownOverlay");
-  overlay.style.display="flex";
-  let count = 3;
-  const interval = setInterval(()=>{
-    overlay.innerText = count>0 ? count : "🎉";
-    count--;
-    if(count < 0){
-      clearInterval(interval);
-      setTimeout(()=>{overlay.style.display="none";},1000);
-    }
-  },1000);
 }
 
 /* Hidden personal message on tap */
