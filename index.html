@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>🌹 For You</title>
+  <title>🌹 Rose Day Surprise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -11,28 +12,33 @@
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
+      overflow: hidden;
     }
     .box {
       background: white;
-      padding: 25px;
+      padding: 22px;
       border-radius: 20px;
       text-align: center;
       width: 90%;
-      max-width: 330px;
-      animation: pop 1s ease;
+      max-width: 340px;
+      animation: pop 0.8s ease;
     }
     button {
       background: #ff4d6d;
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 10px 16px;
       border-radius: 12px;
       font-size: 14px;
       margin: 6px;
+      cursor: pointer;
     }
     .rose {
       font-size: 50px;
       animation: float 2s infinite alternate;
+    }
+    .no {
+      position: absolute;
     }
     @keyframes pop {
       from {transform: scale(0.5); opacity:0;}
@@ -49,7 +55,7 @@
 <div class="box">
   <div id="content">
     <div class="rose">🌹</div>
-    <h3>Hey ❤️</h3>
+    <h3>Hey SEJAL ❤️</h3>
     <p>Ready for a small surprise?</p>
     <button onclick="next()">Yes 😊</button>
   </div>
@@ -57,42 +63,49 @@
 
 <script>
 let step = 0;
-function next(answer){
+
+function next(){
   const c = document.getElementById("content");
 
   if(step === 0){
     c.innerHTML = `
       <h3>Question 1 💕</h3>
       <p>Do you like surprises?</p>
-      <button onclick="next('yes')">Yes 😍</button>
-      <button onclick="next('no')">A little 🙈</button>`;
+      <button onclick="next()">Yes 😍</button>
+      <button onclick="next()">Obviously 🙈</button>`;
   }
 
   else if(step === 1){
     c.innerHTML = `
       <h3>Question 2 🌹</h3>
-      <p>Which rose do you like?</p>
-      <button onclick="next()">Red ❤️</button>
-      <button onclick="next()">Pink 💖</button>`;
+      <p>Am I special to you?</p>
+      <button onclick="next()">Very Much ❤️</button>
+      <button onclick="next()">Of course 😘</button>`;
   }
 
   else if(step === 2){
     c.innerHTML = `
-      <h3>Question 3 🥰</h3>
-      <p>Who makes you smile the most?</p>
-      <button onclick="next()">You 😌</button>
-      <button onclick="next()">Me 😉</button>`;
+      <h3>Last Question 😳</h3>
+      <p>Will you be mine forever?</p>
+      <button onclick="yes()">YES 💖</button>
+      <button class="no" onmouseover="move(this)">NO 😜</button>`;
   }
 
-  else if(step === 3){
-    c.innerHTML = `
-      <div class="rose">🌹🌹🌹</div>
-      <h2>Happy Rose Day 💐</h2>
-      <p>This rose is only for you ❤️</p>
-      <p>Will you stay with me always? 💍</p>
-    `;
-  }
   step++;
+}
+
+function move(btn){
+  btn.style.top = Math.random()*200 + "px";
+  btn.style.left = Math.random()*200 + "px";
+}
+
+function yes(){
+  const c = document.getElementById("content");
+  c.innerHTML = `
+    <div class="rose">🌹🌹🌹</div>
+    <h2>I Love You SEJAL ❤️</h2>
+    <p>Happy Rose Day 💐</p>
+    <p>You made my day special 😊</p>`;
 }
 </script>
 
