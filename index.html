@@ -1,68 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>🌹 Rose Day Surprise</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg,#ff758c,#ff7eb3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-    .box {
-      background: white;
-      padding: 22px;
-      border-radius: 20px;
-      text-align: center;
-      width: 90%;
-      max-width: 340px;
-      animation: pop 0.8s ease;
-    }
-    button {
-      background: #ff4d6d;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-size: 14px;
-      margin: 6px;
-      cursor: pointer;
-    }
-    .rose {
-      font-size: 50px;
-      animation: float 2s infinite alternate;
-    }
-    .no {
-      position: absolute;
-    }
-    @keyframes pop {
-      from {transform: scale(0.5); opacity:0;}
-      to {transform: scale(1); opacity:1;}
-    }
-    @keyframes float {
-      from {transform: translateY(0);}
-      to {transform: translateY(-15px);}
-    }
-  </style>
-</head>
-<body>
-
-<div class="box">
-  <div id="content">
-    <div class="rose">🌹</div>
-    <h3>Hey SEJAL ❤️</h3>
-    <p>Ready for a small surprise?</p>
-    <button onclick="next()">Yes 😊</button>
-  </div>
-</div>
-
 <script>
 let step = 0;
+let sadIndex = 0;
+
+const sadLines = [
+  "Are you sure? 😢",
+  "Thoda soch lo na 💔",
+  "Itna bhi bura nahi hoon 😔",
+  "Dil toot raha hai mera 🥺",
+  "Last chance… please ❤️"
+];
 
 function next(){
   const c = document.getElementById("content");
@@ -79,24 +25,39 @@ function next(){
     c.innerHTML = `
       <h3>Question 2 🌹</h3>
       <p>Am I special to you?</p>
-      <button onclick="next()">Very Much ❤️</button>
+      <button onclick="next()">Very much ❤️</button>
       <button onclick="next()">Of course 😘</button>`;
   }
 
   else if(step === 2){
-    c.innerHTML = `
-      <h3>Last Question 😳</h3>
-      <p>Will you be mine forever?</p>
-      <button onclick="yes()">YES 💖</button>
-      <button class="no" onmouseover="move(this)">NO 😜</button>`;
+    showProposal();
   }
 
   step++;
 }
 
-function move(btn){
-  btn.style.top = Math.random()*200 + "px";
-  btn.style.left = Math.random()*200 + "px";
+function showProposal(){
+  const c = document.getElementById("content");
+  c.innerHTML = `
+    <h3>Last Question 💍</h3>
+    <p>Will you be mine forever?</p>
+    <button onclick="yes()">YES 💖</button>
+    <button onclick="no()">NO 😶</button>`;
+}
+
+function no(){
+  const c = document.getElementById("content");
+
+  c.innerHTML = `
+    <h3>${sadLines[sadIndex]} 😢</h3>
+    <p>Will you be mine forever?</p>
+    <button onclick="yes()">YES 💖</button>
+    <button onclick="no()">NO 😭</button>`;
+
+  sadIndex++;
+  if(sadIndex >= sadLines.length){
+    sadIndex = sadLines.length - 1;
+  }
 }
 
 function yes(){
@@ -104,10 +65,7 @@ function yes(){
   c.innerHTML = `
     <div class="rose">🌹🌹🌹</div>
     <h2>I Love You SEJAL ❤️</h2>
-    <p>Happy Rose Day 💐</p>
-    <p>You made my day special 😊</p>`;
+    <p>You made me the happiest 😊</p>
+    <p>Happy Rose Day 💐</p>`;
 }
-</script>
-
-</body>
-</html>
+  </script>
